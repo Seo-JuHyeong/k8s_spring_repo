@@ -5,12 +5,14 @@ import com.example.demo.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
 public class BoardController {
@@ -21,6 +23,14 @@ public class BoardController {
     public ResponseEntity<List<BoardDto>> list() {
         List<BoardDto> boardList = boardService.getBoardlist();
         return new ResponseEntity<>(boardList, HttpStatus.OK);
+    }
+
+    @GetMapping("/board/{no}")
+    public ResponseEntity<BoardDto> detail(@PathVariable("no") Long no, Model model) {
+        BoardDto boardDTO = boardService.getPost(no);
+
+        // model.addAttribute("boardDto", boardDTO);
+        return new ResponseEntity<>(boardDTO, HttpStatus.OK);
     }
 
 
