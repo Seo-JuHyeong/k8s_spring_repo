@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://webserver:3030")
+@CrossOrigin(origins = "webboard-svc:80")
 @RestController
 @AllArgsConstructor
 public class BoardController {
